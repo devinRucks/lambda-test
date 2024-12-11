@@ -6,6 +6,6 @@ Resources:
     Properties:
       FunctionName: LambdaTest
       Handler: com.drucks.LambdaEntry::handleRequest
-      Runtime: java11
+      Runtime: java17
       CodeUri: build/libs/lambda-test-1.0-SNAPSHOT.jar
 
