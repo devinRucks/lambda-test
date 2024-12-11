@@ -6,6 +6,6 @@ Resources:
     Properties:
       FunctionName: LambdaTest
       Handler: com.drucks.LambdaEntry::handleRequest
-      Runtime: java17
+      Runtime: java11
       CodeUri: ./
 
