@@ -5,7 +5,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: LambdaTest
-      Handler: com.drucks.LambdaEntry::handleRequest
+      Handler: LambdaEntry::handleRequest
       Runtime: java17
       CodeUri: build/libs/lambda-test-1.0-SNAPSHOT.jar
 

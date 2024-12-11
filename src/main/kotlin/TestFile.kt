@@ -1,5 +1,3 @@
-package com.drucks
-
 class TestFile {
     init {
         val tests = mutableListOf<Test>()

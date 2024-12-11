@@ -1,4 +1,6 @@
 plugins {
+    java
+    war
     kotlin("jvm") version "1.9.23"
 }
 

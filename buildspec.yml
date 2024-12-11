@@ -2,7 +2,7 @@ version: 0.2
 phases:
   build:
     commands:
-      - ./gradlew build
+      - ./gradlew jar
       - aws cloudformation package --template-file template.yml --output-template-file template-out.yml --s3-bucket drucks-lambda
 artifacts:
   files:
