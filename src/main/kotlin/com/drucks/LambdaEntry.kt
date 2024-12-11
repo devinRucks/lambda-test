@@ -7,6 +7,10 @@ import com.amazonaws.services.lambda.runtime.Context
 class LambdaEntry : RequestHandler<Map<String, Any>, String> {
     val testFile = TestFile()
 
+    init {
+        println(this.javaClass.name)
+    }
+
     override fun handleRequest(input: Map<String, Any>, context: Context): String {
         context.logger.log("Input received: $input")
         val tests = mutableListOf<Test>()
