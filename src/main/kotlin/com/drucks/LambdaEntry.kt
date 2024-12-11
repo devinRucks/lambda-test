@@ -1,3 +1,5 @@
+package com.drucks
+
 import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.amazonaws.services.lambda.runtime.Context
 
