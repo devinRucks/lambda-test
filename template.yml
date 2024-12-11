@@ -1,0 +1,10 @@
+Transform: AWS::Serverless-2016-10-31
+Description: Deploy Lambda Pipeline Test
+Resources:
+  MySAMLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: LambdaEntry::handleRequest
+      Runtime: java17
+      CodeUri: ./
+

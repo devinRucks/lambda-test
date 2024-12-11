@@ -1,0 +1,9 @@
+version: 0.2
+phases:
+  build:
+    commands:
+      - aws cloudformation package --template-file template.yml --output-template-file template-out.yml --s3-bucket lambda
+artifacts:
+  files:
+    - template.yml
+    - template-out.yml
