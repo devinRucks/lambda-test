@@ -7,5 +7,5 @@ Resources:
       FunctionName: LambdaTest
       Handler: LambdaEntry::handleRequest
       Runtime: java17
-      CodeUri: build/libs/lambda-test-1.0-SNAPSHOT.jar
+      CodeUri: distributions/lambda-test-1.0-SNAPSHOT.jar
 

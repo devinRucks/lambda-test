@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     java
     war
@@ -21,6 +23,19 @@ dependencies {
     implementation("com.amazonaws:aws-lambda-java-core:1.2.0")
     testImplementation(kotlin("test"))
 }
+
+tasks.register<Zip>("zipAll") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(sourceSets.main.get().output)
+
+    dependsOn(configurations.runtimeClasspath)
+    from({
+        configurations.runtimeClasspath.get()
+            .filter { it.name.endsWith("jar") }
+            .map { zipTree(it) }
+    })
+}
+
 
 tasks.test {
     useJUnitPlatform()
