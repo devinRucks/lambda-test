@@ -5,9 +5,15 @@ import com.amazonaws.services.lambda.runtime.Context
 
 
 class LambdaEntry : RequestHandler<Map<String, Any>, String> {
+    val testFile = TestFile()
 
     override fun handleRequest(input: Map<String, Any>, context: Context): String {
         context.logger.log("Input received: $input")
-        return "Hello, ${input["name"] ?: "World"}!"
+        val tests = mutableListOf<Test>()
+        for (i in (1..50)) {
+            tests.add(Test(i.toString()))
+        }
+        println(tests)
+        return "Hello, World!"
     }
 }
