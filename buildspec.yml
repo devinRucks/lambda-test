@@ -16,7 +16,7 @@ phases:
         # Use the full S3 location directly for upload and deployment
         - aws s3 cp build/distributions/$ARTIFACT_NAME s3://$LAMBDA_ARTIFACTS_BUCKET/$LAMBDA_ARTIFACTS_KEY/
 
-        - echo "Deploying artifact: $ARTIFACT_NAME to Lambda..."
+        - echo "Deploying artifact $ARTIFACT_NAME to Lambda..."
         - aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --s3-bucket $LAMBDA_ARTIFACTS_BUCKET --s3-key $LAMBDA_ARTIFACTS_KEY/$ARTIFACT_NAME
 cache:
   paths:
