@@ -3,8 +3,10 @@ phases:
   build:
     commands:
       - ./gradlew zipAll
-      - aws cloudformation package --template-file template.yml --output-template-file template-out.yml --s3-bucket drucks-lambda
 artifacts:
   files:
-    - template.yml
-    - template-out.yml
+    - build/distributions/lambda-test-*.zip  # Path to the generated zip file
+  discard-paths: yes  # Keep the file flat (no directory structure)
+cache:
+  paths:
+    - '/root/.gradle/**/*'
