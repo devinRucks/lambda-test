@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.drucks"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -22,7 +22,15 @@ dependencies {
     testImplementation(kotlin("test"))
 }
 
+tasks.register("writeMetadata") {
+    println(layout.buildDirectory.get())
+    val metadataFile = file("${layout.buildDirectory.get()}/metadata.txt")
+    metadataFile.writeText("${project.name}\n${project.version}")
+}
+
 tasks.register<Zip>("zipAll") {
+    dependsOn("writeMetadata")
+
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from(sourceSets.main.get().output)
 

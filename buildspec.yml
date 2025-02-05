@@ -2,11 +2,22 @@ version: 0.2
 phases:
   build:
     commands:
-      - ./gradlew zipAll
-artifacts:
-  files:
-    - build/distributions/lambda-test-*.zip  # Path to the generated zip file
-  discard-paths: yes  # Keep the file flat (no directory structure)
+      - ./gradlew clean zipAll
+      - echo "Building the Java Lambda package..."
+      - gradle clean zipAll
+      # Read metadata from the file
+      - export PROJECT_NAME=$(sed -n '1p' build/metadata.txt)
+      - export PROJECT_VERSION=$(sed -n '2p' build/metadata.txt)
+      - export ARTIFACT_NAME="$PROJECT_NAME-$PROJECT_VERSION.zip"
+      - echo "Artifact Name: $ARTIFACT_NAME"
+  post_build:
+      commands:
+        - echo "Uploading package to S3..."
+        # Use the full S3 location directly for upload and deployment
+        - aws s3 cp build/distributions/$ARTIFACT_NAME s3://$LAMBDA_ARTIFACTS_BUCKET/$LAMBDA_ARTIFACTS_KEY/
+
+        - echo "Deploying artifact: $ARTIFACT_NAME to Lambda..."
+        - aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --s3-bucket $LAMBDA_ARTIFACTS_BUCKET --s3-key $LAMBDA_ARTIFACTS_KEY/$ARTIFACT_NAME
 cache:
   paths:
     - '/root/.gradle/**/*'
