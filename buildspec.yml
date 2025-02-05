@@ -9,7 +9,7 @@ phases:
       - export PROJECT_NAME=$(sed -n '1p' build/metadata.txt)
       - export PROJECT_VERSION=$(sed -n '2p' build/metadata.txt)
       - export ARTIFACT_NAME="$PROJECT_NAME-$PROJECT_VERSION.zip"
-      - echo "Artifact Name: $ARTIFACT_NAME"
+      - echo "Artifact Name $ARTIFACT_NAME"
   post_build:
       commands:
         - echo "Uploading package to S3..."
